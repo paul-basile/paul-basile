@@ -1,2 +1,1 @@
-# paul-basile
 Hello World!
