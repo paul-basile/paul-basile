@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        <script type="text/JavaScript">
+            alert("Welcome to the store!");
+
+            //---prompts
+            let name, item, quantity;
+            name = window.prompt("Enter your name.");
+            item = window.prompt("What item would you like to buy?");
+            quantity = window.prompt("How many of this item would like?");
+            while (quantity < 1 || quantity > 99) {
+                alert("Invalid number, try again!");
+                quantity = window.prompt("How many of this item would like?");
+            }
+
+            //---morning, afternoon or evening
+            let hour;
+            time = new Date();
+            hour = time.getHours();
+            if (hour < 12) {
+                document.write("<h2> Good morning, ");
+            }
+            else if (hour < 18) {
+                document.write("<h2> Good afternoon, ");
+            }
+            else {
+                document.write("<h2> Good evening, ");
+            }
+            document.writeln(`${name}! Thank you for ordering! Your order of ${item} (Qty: ${quantity}) is complete!`);
+
+            //---ETA calculations
+            eta = (time.getDate() + 7);
+            month = (time.getMonth() + 1);
+            year = time.getFullYear();
+
+            //---accounting for month/day iterations between months
+            function daysInMonth(year, month) {
+                return (new Date(year, month, 0).getDate());
+            }
+
+            monthDays = daysInMonth(year, month);
+
+            if (eta > monthDays) {
+                month++;
+                eta -= monthDays;
+            }
+
+            //---final ETA
+            document.writeln(`<br> Your estimated arrival date: ${month}/${eta}/${year}`);
+        </script>
+    </div>
+</body>
+</html>
