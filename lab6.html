@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6</title>
+
+    <style>
+
+      body {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        padding: 5px 20px;
+      }
+      #fact-table {
+        width: 100%;
+        max-width: 500px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 2px;
+      }
+      #fact-table th, #fact-table td {
+        border-left: 1px solid grey;
+        text-align: left;
+        padding: 5px;
+      }
+      #catPhoto {
+        border-radius: 5%;
+      }
+
+    </style>
+
+</head>
+  <body>
+    <h2>Click to fill the table below</h2>
+    <button id="getDataButton">Click me!</button>
+    <table id="fact-table">
+      <thead>
+        <tr>
+          <th>Fact ID</th>
+          <th>Fact</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        
+      </tbody>
+    </table>
+    <img id="cat-photo" src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg" alt="Cat photo" width="200px" height="200px">
+
+    <script>
+
+      const button = document.getElementById('getDataButton');
+      button.addEventListener('click', async () => {
+        //try and catch are for JS promises, similar to cases and default??
+        try {
+
+          //fetching data and sorting
+          const response = await fetch('https://brianobruno.github.io/cats.json');
+          const result = await response.json();
+          const sorted_facts = result.facts.sort((a, b) => a.factId - b.factId);
+          const table_body = document.getElementById('table-body');
+
+          //creating rows for each fact in the sorted facts, editing the inner html rows with the facts
+          sorted_facts.forEach(fact => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${fact.factId}</td><td>${fact.text}</td>`;
+            //giving the table body each row it creates
+            table_body.appendChild(row);
+          });
+
+          //put the catPhoto into a const, then replace it's link with the API's link
+          const catPhoto = document.getElementById('cat-photo');
+          catPhoto.src = result.catPhoto;
+          
+        } catch (error) {
+          //if there's an error getting data, read to the console and alert the user
+          console.error('Error fetching API data.', error);
+          if (error) {
+            alert('Failed to obtain API data.');
+          }
+        }
+      });
+
+    </script>
+
+  </body>
+</html>
