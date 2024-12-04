@@ -250,7 +250,7 @@
                                 <p class="card-text"><b>Title:</b> ${user.title}</p>
                                 <p class="card-text"><b>Followers:</b> ${user.followers}</p>
                                 <p class="card-text"><b>Country:</b> ${user.country.slice(user.country.length - 2, user.country.length)}</p>
-                                <p class="card-text"><b>Chess.com URL:</b> <a href=${user.url}>${user.url}</a></p>
+                                <p class="card-text"><b>Chess.com URL:</b> <a href=${user.url} target="_blank">${user.url}</a></p>
                             </div>
                         </div>`;
                     resultDiv.innerHTML = userInfo;
@@ -304,9 +304,9 @@
                                 <p class="card-text"><b>Members:</b> ${club.members_count}</p>
                                 <p class="card-text"><b>Country:</b> ${club.country.slice(club.country.length - 2, club.country.length)}</p>
                                 <p class="card-text"><b>Average Daily Rating:</b> ${club.average_daily_rating}</p>
-                                <p class="card-text"><b>Chess.com URL:</b> <a href=${club.url}>${club.url}</a></p>
                                 <p class="card-text"><b>Visibility:</b> ${club.visibility}</p>
-                                <p class="card-text"><b>Want to join? Join <a href=${club.join_request}>here</a></b></p>
+                                <p class="card-text"><b>Chess.com URL:</b> <a href=${club.url} target="_blank">${club.url}</a></p>
+                                <p class="card-text"><b>Want to join? Join <a href=${club.join_request} target="_blank">here</a></b></p>
                             </div>
                         </div>
                         `;
